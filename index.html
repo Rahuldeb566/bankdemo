@@ -93,6 +93,18 @@
             updateSpanText("totalBalance", depNumber);
         })
 
+        // Withdraw Button handle
+        const witBtn = document.getElementById("wtBtn");
+        witBtn.addEventListener('click', function(){
+
+            const currentWtAmount = getInputNumber("withdrawAmount");
+
+            updateSpanText("withdrawNow", currentWtAmount);
+            document.getElementById("withdrawAmount").value = "";
+            updateSpanText("totalBalance", -1 * currentWtAmount);
+
+        })
+
         function updateSpanText(id, depNumber){
             const current = document.getElementById(id).innerText;
             const currentNumber = parseFloat(current);
@@ -101,25 +113,6 @@
             document.getElementById(id).innerText = total;
         }
 
-
-        const witBtn = document.getElementById("wtBtn");
-        witBtn.addEventListener('click', function(){
-
-            const currentWtAmount = getInputNumber("withdrawAmount");
-
-            const currentWithdraw = document.getElementById("withdrawNow").innerText;
-            const currentWithdrawNumber = parseFloat(currentWithdraw);
-            const updateWithdraw = currentWtAmount + currentWithdrawNumber;
-            document.getElementById("withdrawNow").innerText = updateWithdraw;//update withdraw
-            document.getElementById("withdrawAmount").value = ""; //To make empty
-
-            const updateBalance = document.getElementById("totalBalance").innerText;
-            const balanceNumber = parseFloat(updateBalance);
-            const totalUpdateBalance = balanceNumber - updateWithdraw;
-
-            document.getElementById("totalBalance").innerText = totalUpdateBalance;
-
-        })
 
         function getInputNumber(id){
             const Amount = document.getElementById(id).value;
